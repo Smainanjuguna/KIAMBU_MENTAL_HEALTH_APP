@@ -6,13 +6,22 @@ export default function SelfTestScreen() {
   const [score, setScore] = useState(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const questions = [
-    "Do you often feel sad or empty?",
-    "Do you have trouble sleeping or sleep too much?",
-    "Do you feel tired or have little energy?",
-    "Do you feel hopeless about the future?",
-  ];
-
+const questions = [
+  "1. Do you often feel sad or empty?",
+  "2. Do you have trouble sleeping or sleep too much?",
+  "3. Do you feel tired or have little energy?",
+  "4. Do you feel hopeless about the future?",
+  "5. Do you find it difficult to concentrate or make decisions?",
+  "6. Do you feel nervous or anxious often?",
+  "7. Do you experience sudden mood swings or emotional outbursts?",
+  "8. Do you avoid social interactions or isolate yourself?",
+  "9. Do you feel worthless or excessively guilty?",
+  "10. Do you find little or no pleasure in activities you usually enjoy?",
+  "11. Do you have thoughts of self-harm or suicide?",
+  "12. Do you use substances (alcohol, drugs) to cope with stress?",
+  "13. Do you feel easily overwhelmed by daily responsibilities?",
+  "14. Do you find it difficult to manage anger or frustration?",
+];
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
 
   const handleAnswer = (index, value) => {
