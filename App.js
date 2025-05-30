@@ -6,6 +6,7 @@ import FactsScreen from './FactsScreen';
 import SelfTestScreen from './SelfTestScreen';
 import FindDoctorScreen from './FindDoctorScreen';
 import SupportGroupScreen from './SupportGroupScreen';
+import AiChatScreen from './AiChatScreen'; 
 import { FontAwesome5, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,7 @@ function LandingPage({ navigation }) {
       </Text>
 
       <Image
-        source={require('./assets/applogo.jpg')}
+        source={require('./assets/app1logo.jpg')}
         style={styles.image}
         resizeMode="contain"
       />
@@ -38,13 +39,16 @@ function Menu({ navigation }) {
     <View style={styles.container}>
       {/* Centered content */}
       <View style={styles.menuContent}>
-        <Text style={styles.menuTitle}>Menu</Text>
+        <Text style={styles.menuTitle}></Text>
 
         <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Facts')}>
           <FontAwesome5 name="brain" size={28} color="#007bff" />
           <Text style={styles.menuText}>Mental Health Facts</Text>
         </TouchableOpacity>
-
+        <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('AiChat')}>
+          <FontAwesome5 name="envelope" size={28} color="#007bff" />
+          <Text style={styles.menuText}>Chat With AI</Text>
+       </TouchableOpacity>
         <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('SelfTest')}>
           <MaterialCommunityIcons name="clipboard-text" size={28} color="#007bff" />
           <Text style={styles.menuText}>Self-Test Kit</Text>
@@ -75,6 +79,7 @@ export default function App() {
         <Stack.Screen name="Landing" component={LandingPage} />
         <Stack.Screen name="Menu" component={Menu} />
         <Stack.Screen name="Facts" component={FactsScreen} />
+        <Stack.Screen name="AiChat" component={AiChatScreen} />
         <Stack.Screen name="SelfTest" component={SelfTestScreen} />
         <Stack.Screen name="FindDoctor" component={FindDoctorScreen} />
         <Stack.Screen name="SupportGroup" component={SupportGroupScreen} />
@@ -142,6 +147,7 @@ menuItem: {
   borderRadius: 10,
   paddingHorizontal: 16,
 },
+
 menuText: {
   fontSize: 16,
   marginLeft: 10,

@@ -1,7 +1,11 @@
+
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function FactsScreen() {
+  const navigation = useNavigation();
+
   const facts = [
     "Mental health affects how we think, feel, and act.",
     "1 in 4 people globally will be affected by mental disorders.",
@@ -10,47 +14,37 @@ export default function FactsScreen() {
     "Talking about your feelings is a sign of strength, not weakness.",
     "Early intervention improves outcomes significantly.",
     "Mental health is just as important as physical health.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Stigma prevents people from seeking help—let's break it.",
-    "Talking about your feelings is a sign of strength, not weakness.",
-    "1 in 4 people globally will be affected by mental disorders.",
-    "1 in 4 people globally will be affected by mental disorders.",
-    "1 in 4 people globally will be affected by mental disorders.",
-    "1 in 4 people globally will be affected by mental disorders.",
   ];
 
   return (
     <ImageBackground
-      source={require('./assets/kl.jpg')} // Adjust path to your image
+      source={require('./assets/brains.png')} // Adjust path to your image
       style={styles.background}
       resizeMode="cover"
     >
-      <ScrollView contentContainerStyle={styles.overlay}>
-        <Text accessibilityRole="header" style={styles.header}>
-          Mental Health Facts
-        </Text>
-        <Text style={styles.intro}>
-          Learn key facts about mental health to stay informed and help reduce stigma.
-        </Text>
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.overlay}>
+          <Text accessibilityRole="header" style={styles.header}>
+            Mental Health Facts
+          </Text>
+          <Text style={styles.intro}>
+            Learn key facts about mental health to stay informed and help reduce stigma.
+          </Text>
 
-        {facts.map((fact, index) => (
-          <View key={index} style={styles.factContainer}>
-            <Text style={styles.fact}>
-              <Text style={styles.factNumber}>{index + 1}. </Text>
-              {fact}
-            </Text>
-          </View>
-        ))}
-      </ScrollView>
+          {facts.map((fact, index) => (
+            <View key={index} style={styles.factContainer}>
+              <Text style={styles.fact}>
+                <Text style={styles.factNumber}>{index + 1}. </Text>
+                {fact}
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
+
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AiChat')}>
+          <Text style={styles.buttonText}>Learn More with AI</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 }
@@ -58,42 +52,50 @@ export default function FactsScreen() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: 'center',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
   overlay: {
     padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)', // light transparent overlay for readability
+    paddingBottom: 80, // add some space for the button
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    textAlign: 'center',
+    color: '#fff',
   },
   intro: {
     fontSize: 16,
-    fontStyle: 'italic',
     marginBottom: 20,
-    textAlign: 'center',
-    color: '#333',
+    color: '#fff',
   },
   factContainer: {
-    backgroundColor: '#f0f8ff',
-    padding: 12,
-    marginBottom: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    padding: 10,
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  fact: {
-    fontSize: 16,
-    lineHeight: 22,
+    marginBottom: 10,
   },
   factNumber: {
     fontWeight: 'bold',
+  },
+  fact: {
+    fontSize: 16,
     color: '#333',
+  },
+  button: {
+    backgroundColor: '#007bff',
+    paddingVertical: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
